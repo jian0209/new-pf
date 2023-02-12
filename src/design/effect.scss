@@ -1,0 +1,558 @@
+// flicker effect with text
+.flicker {
+    animation: flicker 2s infinite;
+    font-weight: bolder;
+}
+
+@-webkit-keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// hover effect with random direction
+.box {
+    margin: 5em auto;
+    position: relative;
+    width: 10em;
+    height: 10em;
+    line-height: 10em;
+    overflow: hidden;
+}
+
+.box__right,
+.box__left,
+.box__top,
+.box__bottom,
+.box__center {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    line-height: inherit;
+    transition: transform 0.4s ease;
+}
+
+.box__right:before,
+.box__left:before,
+.box__top:before,
+.box__bottom:before,
+.box__center:before {
+    position: absolute;
+    content: "";
+    width: 70.71%;
+    height: 70.71%;
+    transform: rotate(45deg);
+}
+
+.box__right:hover,
+.box__left:hover,
+.box__top:hover,
+.box__bottom:hover,
+.box__center:hover {
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.box__right:hover:before,
+.box__left:hover:before,
+.box__top:hover:before,
+.box__bottom:hover:before,
+.box__center:hover:before {
+    width: 100%;
+    height: 100%;
+    transform: none;
+}
+
+.box__right {
+    background: rgb(71, 71, 202);
+    transform: translateX(100%);
+}
+
+.box__right:before {
+    right: 100%;
+    bottom: 0;
+    transform-origin: 100% 100%;
+}
+
+.box__right:hover~.box__center {
+    transform: translateX(-100%);
+}
+
+.box__left {
+    background: rgb(41, 113, 41);
+    transform: translateX(-100%);
+}
+
+.box__left:before {
+    left: 100%;
+    transform-origin: 0 0;
+}
+
+.box__left:hover~.box__center {
+    transform: translateX(100%);
+}
+
+.box__top {
+    background: rgb(156, 70, 70);
+    transform: translateY(-100%);
+}
+
+.box__top:before {
+    top: 100%;
+    right: 0;
+    transform-origin: 100% 0;
+}
+
+.box__top:hover~.box__center {
+    transform: translateY(100%);
+}
+
+.box__bottom {
+    background: rgb(194, 194, 92);
+    transform: translateY(100%);
+}
+
+.box__bottom:before {
+    bottom: 100%;
+    left: 0;
+    transform-origin: 0 100%;
+}
+
+.box__bottom:hover~.box__center {
+    transform: translateY(-100%);
+}
+
+.box__center {
+    background: rgb(169, 135, 72);
+    z-index: -1;
+}
+
+// loading animation
+$count: 7;
+
+.l-container {
+    margin: auto;
+    position: relative;
+    width: 3vmin;
+    height: 3vmin;
+}
+
+.l-ball,
+.l-first {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-700%, 0);
+    opacity: 0;
+}
+
+@for $i from 0 through $count {
+    .l-ball:nth-child(#{$i}) {
+        animation: move 3.5s infinite #{$i * 0.2 + 0.1}s linear;
+    }
+}
+
+.l-first {
+    animation: scaleMove 3.5s infinite linear;
+}
+
+@keyframes move {
+    25% {
+        opacity: 1;
+        transform: translate(-1vw, 0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(1vw, 0);
+    }
+
+    75%,
+    100% {
+        opacity: 0;
+        transform: translate(700%, 0);
+    }
+}
+
+@keyframes scaleMove {
+    25% {
+        opacity: 1;
+        transform: translate(-1vw, 0);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translate(1vw, 0) scale(2);
+    }
+
+    90%,
+    100% {
+        opacity: 0;
+        transform: translate(1vw, 0) scale(1);
+    }
+}
+
+// blur background effect
+$img: "https://imaging.nikon.com/lineup/dslr/df/img/sample/img_02_l.jpg";
+
+#background__for__blur {
+    width: 550px;
+    height: 250px;
+    background-image: url($img);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    overflow: hidden;
+    display: flex;
+
+    #blur__background {
+        position: relative;
+        width: 500px;
+        height: 200px;
+        margin: auto;
+        padding: 5vmin;
+        border-radius: 5px;
+        border: 2px solid rgba(255, 255, 255, .5);
+
+        p {
+            position: relative;
+            color: #fff;
+            z-index: 10;
+            font-size: 1.5vmax;
+            line-height: 1.5;
+
+        }
+
+        &::after {
+            position: absolute;
+            content: "";
+            background-image: url($img);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: top;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            filter: blur(10px);
+            z-index: 0;
+        }
+    }
+}
+
+// conic effect
+@keyframes rotate {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.conic {
+    position: relative;
+    z-index: 0;
+    width: 400px;
+    height: 300px;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2rem;
+
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: -2;
+        left: -50%;
+        top: -50%;
+        width: 200%;
+        height: 200%;
+        background-color: #1a232a;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-image: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
+        animation: rotate 4s linear infinite;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        left: 6px;
+        top: 6px;
+        width: calc(100% - 12px);
+        height: calc(100% - 12px);
+        background: #000;
+        border-radius: 5px;
+    }
+}
+
+.conic__demo::after {
+    animation: opacityChange 5s infinite linear;
+}
+
+@keyframes opacityChange {
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+// button hover border effect
+.hover__button__effect__background {
+    div {
+        position: relative;
+        width: 200px;
+        height: 64px;
+        line-height: 64px;
+        box-shadow: inset 0 0 0 3px #ddd;
+        margin: 50px auto;
+        text-align: center;
+        color: #333;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 1s;
+        overflow: hidden;
+    }
+
+    div::before,
+    div::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        // transition: width .5s, height .5s;
+        // transition-delay: .5s, 0s;
+        border: 3px solid transparent;
+    }
+
+
+    .both:hover {
+        color: #00e2ff;
+
+        &::before {
+            transition: width .5s, height .5s, border-bottom-color 0s;
+            transition-delay: .5s, 0s, .5s;
+            width: 200px;
+            height: 64px;
+            border-left: 3px solid #00e2ff;
+            border-bottom: 3px solid #00e2ff;
+        }
+
+        &::after {
+            transition: width .5s, height .5s, border-right-color .5s;
+            transition-delay: 0s, .5s, .5s;
+            width: 200px;
+            height: 64px;
+            border-top: 3px solid #00e2ff;
+            border-right: 3px solid #00e2ff;
+        }
+    }
+
+    .rectangle {
+        &::after {
+            top: unset;
+            left: unset;
+            right: 0;
+            bottom: -6px;
+        }
+
+        &:hover {
+            &::before {
+                width: 0;
+                height: 0;
+                transition: width .25s, height .25s, border-bottom-color;
+                transition-delay: .25s, 0s, .25s;
+                width: 200px;
+                height: 64px;
+                border-left: 3px solid #00e2ff;
+                border-bottom: 3px solid #00e2ff;
+            }
+
+            &::after {
+                transition: width .25s, height .25s, border-top-color .25s;
+                transition-delay: 0.75s, 0.5s, 0.75s;
+                width: 200px;
+                height: 70px;
+                border-top: 3px solid #00e2ff;
+                border-right: 3px solid #00e2ff;
+            }
+        }
+    }
+}
+
+// link hover effect
+.hover__link {
+    width: 200px;
+    height: 60px;
+    margin: auto;
+    line-height: 60px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #333;
+    text-align: center;
+    transition: color .5s;
+
+    &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: deeppink;
+        transition: all .5s;
+    }
+
+    &:hover::before {
+        left: 0;
+        width: 200px;
+    }
+}
+
+// folder structure effect
+:root {
+    --folder-structure-item-height: 0.5rem;
+    --folder-structure-item-margin-left: 2.25rem;
+    --folder-structure-item-padding-top: 0.5rem;
+}
+
+.folder-structure ul {
+    /* Reset */
+    list-style-type: none;
+    margin: 0;
+}
+
+.folder-structure li {
+    padding: var(--folder-structure-item-padding-top) 0rem 0rem 0rem;
+    position: relative;
+}
+
+.folder-structure li::before {
+    border-left: 1px solid #d1d5db;
+    content: '';
+
+    /* Position */
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate(calc(-1 * var(--folder-structure-item-margin-left)), 0);
+
+    /* Size */
+    height: 100%;
+}
+
+.folder-structure li::after {
+    border-bottom: 1px solid #d1d5db;
+    content: '';
+
+    /* Position */
+    left: 0;
+    position: absolute;
+    top: calc(var(--folder-structure-item-padding-top) + var(--folder-structure-item-height) / 2);
+    transform: translate(-100%, 0);
+
+    /* Size */
+    width: var(--folder-structure-item-margin-left);
+}
+
+/* Remove the border from the last item */
+.folder-structure li:last-child::before {
+    height: calc(var(--folder-structure-item-padding-top) + var(--folder-structure-item-height) / 2);
+}
+
+// zigzag timeline effect
+.zigzag-timeline__item {
+    /* Used to position the milestone */
+    position: relative;
+
+    /* Border */
+    border-bottom: 1px solid #9ca3af;
+
+    /* Take full width */
+    width: 100%;
+}
+
+.zigzag-timeline__milestone {
+    /* Absolute position */
+    position: absolute;
+    top: 50%;
+
+    /* Circle it */
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+
+    /* Misc */
+    background: #9ca3af;
+}
+
+/* Styles for even items */
+.zigzag-timeline__item:nth-child(2n) {
+    border-left: 1px solid #9ca3af;
+}
+
+.zigzag-timeline__item:nth-child(2n) .zigzag-timeline__milestone {
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+/* Styles for odd items */
+.zigzag-timeline__item:nth-child(2n + 1) {
+    border-right: 1px solid #9ca3af;
+}
+
+.zigzag-timeline__item:nth-child(2n + 1) .zigzag-timeline__milestone {
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+// wrapper text effect
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: visible;
+    overflow-y: hidden;
+}
+
+.text {
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: transparent;
+}
+
+.SplitTextJS-char {
+    background: url(https://66.media.tumblr.com/db959f40faddc3ad1d28895d6daf7547/tumblr_ontppg75S01rquqsdo1_500.gif);
+    -webkit-background-clip: text;
+    background-size: contain;
+    background-position: top left;
+}

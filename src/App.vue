@@ -1,31 +1,23 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-import HelloI18n from "./components/HelloI18n.vue";
+import { RouterView } from "vue-router";
+// import { RouterLink, RouterView } from "vue-router";
+// import HelloWorld from "./components/HelloWorld.vue";
+// import HelloI18n from "./components/HelloI18n.vue";
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <!-- <header> -->
+  <!-- <div class="wrapper">
+    <HelloWorld msg="You did it!" />
       <HelloI18n />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/i18n">I18n</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/i18n">I18n</RouterLink>
+    </nav>
+    </div> -->
+  <!-- </header> -->
   <RouterView />
 </template>
 
