@@ -1,5 +1,5 @@
 <script setup>
-import "../design/error.sass";
+import "@/design/error.sass";
 </script>
 
 <template>
@@ -12,10 +12,12 @@ import "../design/error.sass";
         <div class="inner-content">
           <h1 class="heading">404</h1>
           <p class="subheading">
-            Looks like the page you were looking for is no longer here.
+            {{ $t("errorPage.subHeading") }}
           </p>
           <div style="border: 1px solid; border-color: gray; margin: 10px 0" />
-          <p class="subheading">Go Back to Home Page</p>
+          <p class="subheading">
+            {{ $t("errorPage.back") }}
+          </p>
         </div>
       </div>
       <div class="right-section">

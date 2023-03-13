@@ -1,3 +1,7 @@
 {
-  "message": "hello i18n !!"
+  "message": "hello i18n !!",
+  "errorPage": {
+    "subHeading": "Looks like the page you were looking for is no longer here.",
+    "back": "Go Back To Home Page"
+  }
 }

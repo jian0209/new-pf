@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
-import NotFoundView from "../views/ErrorNotFound.vue";
+import HomeView from "@/views/Home/IndexPage.vue";
+import AboutView from "@/views/About/IndexPage.vue";
+import NotFoundView from "@/views/Error/ErrorNotFound.vue";
 
-import MainView from "../views/Example/MainView.vue";
-import ScrollView from "../views/Example/ScrollView.vue";
-import FlickerView from "../views/Example/FlickerView.vue";
-import DirectionHoverView from "../views/Example/DirectionHoverView.vue";
-import LoadingView from "../views/Example/LoadingView.vue";
-import BlurView from "../views/Example/BlurView.vue";
-import ButtonHoverView from "../views/Example/ButtonHoverView.vue";
-import TreeView from "../views/Example/TreeView.vue";
-import ConicView from "../views/Example/ConicView.vue";
-import TimelineView from "../views/Example/TimelineView.vue";
-import SmoothTextView from "../views/Example/SmoothTextView.vue";
+import MainView from "@/views/Example/MainView.vue";
+import ScrollView from "@/views/Example/ScrollView.vue";
+import FlickerView from "@/views/Example/FlickerView.vue";
+import DirectionHoverView from "@/views/Example/DirectionHoverView.vue";
+import LoadingView from "@/views/Example/LoadingView.vue";
+import BlurView from "@/views/Example/BlurView.vue";
+import ButtonHoverView from "@/views/Example/ButtonHoverView.vue";
+import TreeView from "@/views/Example/TreeView.vue";
+import ConicView from "@/views/Example/ConicView.vue";
+import TimelineView from "@/views/Example/TimelineView.vue";
+import SmoothTextView from "@/views/Example/SmoothTextView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

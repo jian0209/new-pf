@@ -1,3 +1,7 @@
 {
-  "message": "你好 i18n !!"
+  "message": "你好 i18n !!",
+  "errorPage": {
+    "subHeading": "你要寻找的页面好像不见了哦。查查你的地址吧",
+    "back": "返回至首页"
+  }
 }

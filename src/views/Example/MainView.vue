@@ -1,5 +1,5 @@
 <script setup>
-import "../../design/effect.scss";
+import "@/design/effect.scss";
 import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
 </script>
