@@ -44,7 +44,7 @@ npm run lint
 
 ###### Information
 
-###### Project
+###### Projects
 
 ###### Skills
 
