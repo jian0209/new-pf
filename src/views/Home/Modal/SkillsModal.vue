@@ -1,10 +1,11 @@
-<script setup>
-import { defineComponent } from "vue";
+<!-- <script setup>
+import { defineComponent, ref, watch } from "vue";
 import { SKILLS_SET } from "@/utils/constant";
-</script>
+console.log(this.props);
+</script> -->
 
 <template>
-  <div v-if="this.show">
+  <div v-if="modalShow">
     <div class="pop-up-cont">
       <button @click="hideModal">
         <img height="30" src="@/assets/images/close_icon.png" alt="close" />
@@ -28,6 +29,8 @@ import { SKILLS_SET } from "@/utils/constant";
 </template>
 
 <script>
+import { defineComponent, ref, watch } from "vue";
+import { SKILLS_SET } from "@/utils/constant";
 export default defineComponent({
   name: "SkillsModal",
   props: {
@@ -43,6 +46,19 @@ export default defineComponent({
         this.$emit("close");
       }, 500);
     },
+  },
+  setup(props) {
+    const modalShow = ref(props.show);
+    watch(
+      () => props.show,
+      (val) => {
+        modalShow.value = val;
+      }
+    );
+    return {
+      SKILLS_SET,
+      modalShow,
+    };
   },
   mounted() {
     return {
