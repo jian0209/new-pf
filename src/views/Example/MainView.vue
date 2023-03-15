@@ -30,6 +30,8 @@ import { RouterLink } from "vue-router";
       <RouterLink to="/example/conic"> Go To Conic Effect </RouterLink>
       <hr />
       <RouterLink to="/example/scroll"> Go To Scroll Effect </RouterLink>
+      <hr />
+      <RouterLink to="/example/shapeFilter"> Go To Shape Filter </RouterLink>
     </nav>
   </div>
 </template>

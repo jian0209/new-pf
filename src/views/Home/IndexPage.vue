@@ -1,10 +1,14 @@
 <script setup>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
+import { getDetailInBox, detectDeviceType } from "@/utils/util";
+import Shape from "@/layout/shape.js";
+import SkillsModalVue from "./Modal/SkillsModal.vue";
 </script>
 
 <template>
-  <div id="main-page-background"></div>
+  <!-- <canvas class="canvas"></canvas> -->
+  <div id="main-page-background" @click="shakeModal"></div>
   <code id="code">
     {{ `SELECT ${hoverText} FROM Nick;` }}
   </code>
@@ -12,20 +16,26 @@ import { RouterLink } from "vue-router";
     <div class="progress"></div>
     <div class="cube-wrap">
       <div class="cube">
-        <div @mouseover="changeCode('CV')" class="side top">CV</div>
+        <div @mouseover="changeCode('CV')" class="side top"><p>CV</p></div>
         <div @mouseover="changeCode('Project')" class="side bottom">
-          Project
+          <p>Project</p>
         </div>
         <div @mouseover="changeCode('Information')" class="side front">
-          Information
+          <p>Information</p>
         </div>
         <div @mouseover="changeCode('Interest')" class="side back">
-          Interest
+          <p>Interest</p>
         </div>
-        <div @mouseover="changeCode('Skills')" class="side left">
-          <RouterLink to="/example/main"> Skills </RouterLink>
+        <div
+          @click="showModal"
+          @mouseover="changeCode('Skills')"
+          class="side left"
+        >
+          <p>Skills</p>
         </div>
-        <div @mouseover="changeCode('*')" class="side right"></div>
+        <div @mouseover="changeCode('Contact')" class="side right">
+          <p>Contact</p>
+        </div>
       </div>
       <div class="container">
         <div class="chevron"></div>
@@ -34,6 +44,7 @@ import { RouterLink } from "vue-router";
       </div>
     </div>
   </div>
+  <SkillsModalVue :show="showSkill" @close="hideModal" />
 </template>
 
 <script>
@@ -41,9 +52,11 @@ export default defineComponent({
   name: "ScrollView",
   components: {
     RouterLink,
+    SkillsModalVue,
   },
   data() {
     return {
+      showSkill: false,
       hoverText: "Information",
     };
   },
@@ -51,14 +64,28 @@ export default defineComponent({
     changeCode(e) {
       this.hoverText = e;
     },
+    showModal() {
+      this.showSkill = true;
+    },
+    hideModal() {
+      this.showSkill = false;
+    },
   },
   mounted() {
     let offsetStart = 0;
     let offsetEnd = 0;
 
+    // Shape.init();
+
     window.addEventListener(
       "scroll",
       () => {
+        if (
+          detectDeviceType(navigator.userAgent) === "m" ||
+          detectDeviceType(navigator.userAgent) === "t"
+        ) {
+          this.hoverText = getDetailInBox(window.pageYOffset);
+        }
         document.documentElement.style.setProperty(
           "--scroll",
           (window.pageYOffset - offsetStart) /
@@ -77,6 +104,14 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/design/var.scss";
 
+.canvas {
+  z-index: 9999;
+  background-color: $primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 #main-page-background {
   position: fixed;
   top: 0;
@@ -87,13 +122,13 @@ export default defineComponent({
 
 #code {
   position: fixed;
-  top: 10vh;
+  top: 3vh;
   left: 0;
   // border: 1px solid white;
   width: 100%;
   text-align: center;
   font-family: "Fira Code", monospace;
-  font-size: 2rem;
+  font-size: $title;
   color: $white;
   z-index: 100;
 }
@@ -176,6 +211,10 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   color: $black;
+  cursor: pointer;
+  p {
+    font-size: $normal;
+  }
 }
 .top {
   background-color: $white;
@@ -184,22 +223,34 @@ export default defineComponent({
 .bottom {
   background-color: $gray;
   transform: rotateX(90deg) translateZ(calc(var(--size) * -0.5));
+  p {
+    transform: rotateX(180deg);
+  }
 }
 .left {
   background-color: $primary;
   transform: rotateY(90deg) translateZ(calc(var(--size) * 0.5));
 }
 .right {
-  background-color: $darkPrimary;
+  background-color: $lightSecondary;
   transform: rotateY(90deg) translateZ(calc(var(--size) * -0.5));
+  p {
+    transform: rotateX(180deg);
+  }
 }
 .front {
   background-color: $lightPrimary;
   transform: translateZ(calc(var(--size) * 0.5));
+  p {
+    transform: rotateZ(270deg);
+  }
 }
 .back {
   background-color: $secondary;
   transform: translateZ(calc(var(--size) * -0.5));
+  p {
+    transform: rotateX(180deg) rotateZ(90deg);
+  }
 }
 
 :root * {
