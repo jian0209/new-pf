@@ -1,5 +1,13 @@
 {
   "message": "hello i18n !!",
+  "cube": {
+    "CV": "CV",
+    "projects": "Projects",
+    "information": "Information",
+    "interests": "Interests",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
   "errorPage": {
     "subHeading": "Looks like the page you were looking for is no longer here.",
     "back": "Go Back To Home Page"

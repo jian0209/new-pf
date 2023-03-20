@@ -4,6 +4,7 @@ import { RouterLink } from "vue-router";
 import { getDetailInBox, detectDeviceType } from "@/utils/util";
 import Shape from "@/layout/shape.js";
 import SkillsModalVue from "./Modal/SkillsModal.vue";
+import ContactModal from "./Modal/ContactModal.vue";
 </script>
 
 <template>
@@ -17,24 +18,28 @@ import SkillsModalVue from "./Modal/SkillsModal.vue";
     <div class="cube-wrap">
       <div class="cube">
         <div @mouseover="changeCode('CV')" class="side top"><p>CV</p></div>
-        <div @mouseover="changeCode('Project')" class="side bottom">
-          <p>Project</p>
+        <div @mouseover="changeCode('Projects')" class="side bottom">
+          <p>{{ $t("cube.projects") }}</p>
         </div>
         <div @mouseover="changeCode('Information')" class="side front">
-          <p>Information</p>
+          <p>{{ $t("cube.information") }}</p>
         </div>
-        <div @mouseover="changeCode('Interest')" class="side back">
-          <p>Interest</p>
+        <div @mouseover="changeCode('Interests')" class="side back">
+          <p>{{ $t("cube.interests") }}</p>
         </div>
         <div
-          @click="showModal"
+          @click="showSkillModal"
           @mouseover="changeCode('Skills')"
           class="side left"
         >
-          <p>Skills</p>
+          <p>{{ $t("cube.skills") }}</p>
         </div>
-        <div @mouseover="changeCode('Contact')" class="side right">
-          <p>Contact</p>
+        <div
+          @click="showContactModal"
+          @mouseover="changeCode('Contact')"
+          class="side right"
+        >
+          <p>{{ $t("cube.contact") }}</p>
         </div>
       </div>
       <div class="container">
@@ -45,6 +50,7 @@ import SkillsModalVue from "./Modal/SkillsModal.vue";
     </div>
   </div>
   <SkillsModalVue :show="showSkill" @close="hideModal" />
+  <ContactModal :show="showContact" @close="hideModal" />
 </template>
 
 <script>
@@ -53,10 +59,12 @@ export default defineComponent({
   components: {
     RouterLink,
     SkillsModalVue,
+    ContactModal,
   },
   data() {
     return {
       showSkill: false,
+      showContact: false,
       hoverText: "Information",
     };
   },
@@ -64,11 +72,15 @@ export default defineComponent({
     changeCode(e) {
       this.hoverText = e;
     },
-    showModal() {
+    showSkillModal() {
       this.showSkill = true;
+    },
+    showContactModal() {
+      this.showContact = true;
     },
     hideModal() {
       this.showSkill = false;
+      this.showContact = false;
     },
   },
   mounted() {

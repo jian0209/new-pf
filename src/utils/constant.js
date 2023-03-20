@@ -191,3 +191,31 @@ export const SKILLS_SET = [
     ],
   },
 ];
+
+export const CONTACTS = [
+  {
+    name: "Email",
+    icon: "email",
+    link: "mailto:jian000209@gmail.com?subject=You are selected",
+  },
+  {
+    name: "Github",
+    icon: "github",
+    link: "https://github.com/jian0209",
+  },
+  {
+    name: "LinkedIn",
+    icon: "linkedin",
+    link: "https://www.linkedin.com/in/tey-kai-jian-285b7718b/",
+  },
+  {
+    name: "Facebook",
+    icon: "facebook",
+    link: "https://www.facebook.com/kaijian.tey",
+  },
+  {
+    name: "Phone Number: +65 8459 8263",
+    icon: "phone",
+    link: "tel:+6584598263",
+  },
+];

@@ -1,12 +1,6 @@
-<!-- <script setup>
-import { defineComponent, ref, watch } from "vue";
-import { SKILLS_SET } from "@/utils/constant";
-console.log(this.props);
-</script> -->
-
 <template>
   <div v-if="modalShow">
-    <div class="pop-up-cont">
+    <div class="pop-up-skills-cont">
       <button @click="hideModal">
         <img height="30" src="@/assets/images/close_icon.png" alt="close" />
       </button>
@@ -41,7 +35,9 @@ export default defineComponent({
   },
   methods: {
     hideModal() {
-      document.getElementsByClassName("pop-up-cont")[0].classList.add("hidden");
+      document
+        .getElementsByClassName("pop-up-skills-cont")[0]
+        .classList.add("hidden");
       setTimeout(() => {
         this.$emit("close");
       }, 500);
@@ -64,15 +60,6 @@ export default defineComponent({
     return {
       SKILLS_SET,
     };
-  },
-  updated() {
-    // const myDiv = document.getElementById("hor-cont");
-    // myDiv.addEventListener("scroll", () => {
-    //   console.log(myDiv.scrollLeft);
-    //   if (myDiv.scrollLeft > 0) {
-    //     console.log("Scrolled horizontally");
-    //   }
-    // });
   },
 });
 </script>
@@ -97,7 +84,7 @@ export default defineComponent({
   }
 }
 
-.pop-up-cont {
+.pop-up-skills-cont {
   position: fixed;
   top: 10vh;
   left: 10vw;
@@ -139,7 +126,7 @@ export default defineComponent({
       font-size: $normal;
       background-color: rgba(98, 68, 103, 0.7);
       border-radius: 10px;
-      border: 1px solid $darkSecondary;
+      border: 3px solid $darkSecondary;
       display: inline-block;
       width: 250px;
       padding: 30px;
