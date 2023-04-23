@@ -47,3 +47,19 @@ export function detectDeviceType(userAgent) {
     return "m";
   }
 }
+
+/**
+ * @description: debounce function to prevent too many requests
+ * @param {function} func
+ * @param {number} timeout
+ * @return {function}
+ */
+export function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}

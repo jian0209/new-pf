@@ -128,8 +128,8 @@ export default defineComponent({
       border-radius: 10px;
       border: 3px solid $darkSecondary;
       display: inline-block;
-      width: 250px;
-      padding: 30px;
+      width: 240px;
+      padding: 20px;
       margin-right: 20px;
       p {
         text-align: center;

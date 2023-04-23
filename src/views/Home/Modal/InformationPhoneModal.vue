@@ -1,12 +1,24 @@
 <template>
   <div v-if="modalShow">
-    <div class="pop-up-contact-cont">
+    <div class="pop-up-information-cont">
       <button @click="hideModal">
         <img height="30" src="@/assets/images/close_icon.png" alt="close" />
       </button>
-      <div class="contact-cont" v-for="(item, index) in CONTACTS" :key="index">
-        <div @click="goToUrl(item.link)" class="contact">
-          <p id="title">{{ item.name }}</p>
+      <div class="information-cont">
+        <p id="title">Information</p>
+        <div id="hor-cont">
+          <div id="info">
+            <p>Name</p>
+            <p>Age</p>
+          </div>
+          <div id="info">
+            <p>: {{ NAME }}</p>
+            <p>: {{ AGE }}</p>
+            <p>: {{ ADDRESS }}</p>
+            <p>: {{ PHONE }}</p>
+            <p>: {{ EMAIL }}</p>
+            <p>: {{ WEBSITE }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -15,9 +27,8 @@
 
 <script>
 import { defineComponent, ref, watch } from "vue";
-import { CONTACTS } from "@/utils/constant";
 export default defineComponent({
-  name: "ContactModal",
+  name: "InformationPhoneModal",
   props: {
     show: {
       type: Boolean,
@@ -27,22 +38,11 @@ export default defineComponent({
   methods: {
     hideModal() {
       document
-        .getElementsByClassName("pop-up-contact-cont")[0]
+        .getElementsByClassName("pop-up-information-cont")[0]
         .classList.add("hidden");
       setTimeout(() => {
         this.$emit("close");
       }, 500);
-    },
-    goToUrl(url) {
-      window.open(url, "_blank");
-    },
-    addClass() {
-      document.getElementsByClassName("contact")[0].classList.add("hover");
-      console.log("asd");
-    },
-    removeClass() {
-      document.getElementsByClassName("contact")[0].classList.remove("hover");
-      console.log("qwe");
     },
   },
   setup(props) {
@@ -54,7 +54,6 @@ export default defineComponent({
       }
     );
     return {
-      CONTACTS,
       modalShow,
     };
   },
@@ -81,25 +80,21 @@ export default defineComponent({
   }
 }
 
-.pop-up-contact-cont {
+.pop-up-information-cont {
   position: fixed;
-  top: 15vh;
+  top: 10vh;
   left: 10vw;
   width: 80vw;
-  height: 70vh;
+  height: 80vh;
   border: 3px solid $secondary;
   border-radius: 10px;
   background: rgba(152, 133, 163, 0.8);
   padding: 3vh 3vw;
   z-index: 9999;
   overflow-y: scroll;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   button {
     position: fixed;
-    top: calc(15vh + 20px);
+    top: calc(10vh + 20px);
     right: calc(10vw + 20px);
     border: none;
     background: none;
@@ -111,29 +106,5 @@ export default defineComponent({
 
 .hidden {
   animation: fade-out 0.5s ease-in-out;
-}
-
-.contact-cont {
-  margin: 10px;
-  .contact {
-    color: $lightSecondary;
-    font-size: $normal;
-    background-color: rgba(98, 68, 103, 0.7);
-    border-radius: 10px;
-    border: 3px solid $darkSecondary;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    height: 125px;
-    cursor: pointer;
-    p {
-      text-align: center;
-    }
-  }
-  #title {
-    font-size: $subtitle;
-    font-weight: bold;
-  }
 }
 </style>

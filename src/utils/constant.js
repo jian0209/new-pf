@@ -219,3 +219,26 @@ export const CONTACTS = [
     link: "tel:+6584598263",
   },
 ];
+
+export const EDUCATION = [
+  {
+    name: "CGPA",
+    result: (3.15 / 4) * 100,
+  },
+  {
+    name: "Java GPA",
+    result: (4 / 4) * 100,
+  },
+  {
+    name: "Visual Basic GPA",
+    result: (3.7 / 4) * 100,
+  },
+  {
+    name: "PHP Web Dev GPA",
+    result: (3.7 / 4) * 100,
+  },
+  {
+    name: "Database Management GPA",
+    result: (3.7 / 4) * 100,
+  },
+];

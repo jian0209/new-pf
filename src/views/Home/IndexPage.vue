@@ -1,10 +1,12 @@
 <script setup>
 import { defineComponent } from "vue";
-import { RouterLink } from "vue-router";
+// import { RouterLink } from "vue-router";
 import { getDetailInBox, detectDeviceType } from "@/utils/util";
-import Shape from "@/layout/shape.js";
+// import Shape from "@/layout/shape.js";
 import SkillsModalVue from "./Modal/SkillsModal.vue";
 import ContactModal from "./Modal/ContactModal.vue";
+import InformationModal from "./Modal/InformationModal.vue";
+import InformationPhoneModal from "./Modal/InformationPhoneModal.vue";
 </script>
 
 <template>
@@ -21,7 +23,11 @@ import ContactModal from "./Modal/ContactModal.vue";
         <div @mouseover="changeCode('Projects')" class="side bottom">
           <p>{{ $t("cube.projects") }}</p>
         </div>
-        <div @mouseover="changeCode('Information')" class="side front">
+        <div
+          @click="showInformationModal"
+          @mouseover="changeCode('Information')"
+          class="side front"
+        >
           <p>{{ $t("cube.information") }}</p>
         </div>
         <div @mouseover="changeCode('Interests')" class="side back">
@@ -51,20 +57,26 @@ import ContactModal from "./Modal/ContactModal.vue";
   </div>
   <SkillsModalVue :show="showSkill" @close="hideModal" />
   <ContactModal :show="showContact" @close="hideModal" />
+  <InformationModal :show="showInformation" @close="hideModal" />
+  <InformationPhoneModal :show="showPhoneInformation" @close="hideModal" />
 </template>
 
 <script>
 export default defineComponent({
   name: "ScrollView",
   components: {
-    RouterLink,
+    // RouterLink,
     SkillsModalVue,
     ContactModal,
+    InformationModal,
+    InformationPhoneModal,
   },
   data() {
     return {
       showSkill: false,
       showContact: false,
+      showInformation: false,
+      showPhoneInformation: false,
       hoverText: "Information",
     };
   },
@@ -78,9 +90,18 @@ export default defineComponent({
     showContactModal() {
       this.showContact = true;
     },
+    showInformationModal() {
+      if (detectDeviceType(navigator.userAgent) === "m") {
+        this.showPhoneInformation = true;
+      } else {
+        this.showInformation = true;
+      }
+    },
     hideModal() {
       this.showSkill = false;
       this.showContact = false;
+      this.showInformation = false;
+      this.showPhoneInformation = false;
     },
   },
   mounted() {
